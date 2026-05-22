@@ -16,6 +16,8 @@ namespace EX02.Logic
         /// </summary>
         public Move(int i_Row, int i_Col)
         {
+            m_Row = i_Row;
+            m_Col = i_Col;
         }
 
         /// <summary>
@@ -25,6 +27,7 @@ namespace EX02.Logic
         {
             get
             {
+                return m_Row;
             }
         }
 
@@ -35,6 +38,7 @@ namespace EX02.Logic
         {
             get
             {
+                return m_Col;
             }
         }
     }
