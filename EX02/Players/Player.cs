@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EX02.Logic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,13 +10,13 @@ namespace EX02.Players
     internal class Player
     {
         private string m_Name;
-        private char m_Symbol;
+        private eCellValue m_Symbol;
         private int m_Score;
 
         /// <summary>
         /// Creates a new player.
         /// </summary>
-        public Player(string i_Name, char i_Symbol)
+        public Player(string i_Name, eCellValue i_Symbol)
         {
             m_Name = i_Name;
             m_Symbol = i_Symbol;
@@ -36,7 +37,7 @@ namespace EX02.Players
         /// <summary>
         /// Returns the player's symbol.
         /// </summary>
-        public char Symbol
+        public eCellValue Symbol
         {
             get
             {

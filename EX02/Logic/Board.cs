@@ -80,7 +80,7 @@ namespace EX02.Logic
 
 
         /// Checks if the given symbol created a losing sequence.
-        public bool HasLosingSequence(eCellValue i_Symbol)   
+        public bool HasLosingSequence(eCellValue i_Symbol)
         {
 
             bool isLose = true;
@@ -153,7 +153,7 @@ namespace EX02.Logic
             return isLose;
         }
 
-       
+
         /// Clears all cells for a new round.
         public void Clear()
         {
@@ -165,5 +165,9 @@ namespace EX02.Logic
                 }
             }
         }
-    
+
+    }
+}
+
+
 
