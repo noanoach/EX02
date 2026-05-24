@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EX02.Logic;
 
 namespace EX02
 {
@@ -16,7 +17,7 @@ namespace EX02
         {
             GameManager gameManager = new GameManager();
 
-            gameManager.Run()
+            gameManager.Run();
         }
     }
 }
