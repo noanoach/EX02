@@ -46,12 +46,25 @@ namespace EX02.Logic
             return m_Cells[i_Row, i_Col] == eCellValue.Empty;
         }
 
+        private bool IsValidCell(int i_Row, int i_Col)
+        {
+            return i_Row >= 0 && i_Row < m_Size &&
+                   i_Col >= 0 && i_Col < m_Size;
+        }
+
 
         /// Places a symbol inside the requested cell.
-        public void PlaceSymbol(int i_Row, int i_Col, eCellValue i_Symbol)
+        public bool PlaceSymbol(int i_Row, int i_Col, eCellValue i_Symbol)
 
         {
-            m_Cells[i_Row, i_Col] = i_Symbol;
+            bool isPlaced = false;
+
+            if (IsValidCell(i_Row, i_Col) && IsCellEmpty(i_Row, i_Col))
+            {
+                m_Cells[i_Row, i_Col] = i_Symbol;
+                isPlaced = true;
+            }
+            return isPlaced;
         }
 
 
@@ -80,7 +93,7 @@ namespace EX02.Logic
 
 
         /// Checks if the given symbol created a losing sequence.
-        public bool HasLosingSequence(eCellValue i_Symbol)   
+        public bool HasLosingSequence(eCellValue i_Symbol)
         {
 
             bool isLose = true;
@@ -153,7 +166,7 @@ namespace EX02.Logic
             return isLose;
         }
 
-       
+
         /// Clears all cells for a new round.
         public void Clear()
         {
@@ -165,5 +178,9 @@ namespace EX02.Logic
                 }
             }
         }
+
+    }
+
+}
     
 
