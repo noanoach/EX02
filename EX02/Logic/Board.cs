@@ -182,5 +182,4 @@ namespace EX02.Logic
     }
 
 }
-    
 

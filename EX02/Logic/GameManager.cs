@@ -93,6 +93,11 @@ namespace EX02.Logic
                 else
                 {
                     move = m_UI.ReadMove(m_CurrentPlayer);
+
+                    if (move.IsQuit)
+                    {
+                        Environment.Exit(0);
+                    }
                 }
 
                 PlayTurn(move);
