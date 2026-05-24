@@ -35,5 +35,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Logic\Board.cs" />
+    <Compile Include="Logic\GameManager.cs" />
+    <Compile Include="Logic\Move.cs" />
+    <Compile Include="Players\ComputerPlayer.cs" />
+    <Compile Include="Players\Player.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="UI\ConsoleUI.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
