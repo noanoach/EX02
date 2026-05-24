@@ -96,15 +96,29 @@ namespace EX02.UI
             int col;
 
             Console.WriteLine(i_Player.Name + ", enter row:");
-            row = int.Parse(Console.ReadLine());
+            string rowInput = Console.ReadLine().ToLower();
+
+            if (rowInput == "q")
+            {
+                Environment.Exit(0);
+            }
+
+            row = int.Parse(rowInput);
 
             Console.WriteLine(i_Player.Name + ", enter column:");
-            col = int.Parse(Console.ReadLine());
+            string colInput = Console.ReadLine().ToLower();
+
+            if (colInput == "q")
+            {
+                Environment.Exit(0);
+            }
+
+            col = int.Parse(colInput);
 
             return new Move(row - 1, col - 1);
         }
 
-   
+
         /// Prints the current board state.
         public void PrintBoard(Board i_Board)
         {
@@ -224,7 +238,7 @@ namespace EX02.UI
 
             }
 
-            rreturn playAgain;
+            return playAgain;
         }
     }
 }
