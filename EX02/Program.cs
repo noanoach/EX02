@@ -14,6 +14,9 @@ namespace EX02
         /// </summary>
         static void Main(string[] args)
         {
+            GameManager gameManager = new GameManager();
+
+            gameManager.Run()
         }
     }
 }
