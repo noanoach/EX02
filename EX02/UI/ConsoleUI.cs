@@ -11,81 +11,221 @@ namespace EX02.UI
 {
     internal class ConsoleUI
     {
-        /// <summary>
         /// Prints the welcome message.
-        /// </summary>
         public void PrintWelcome()
         {
+            Console.WriteLine("Welcome to Reverse Tic Tac Toe!");
+            Console.WriteLine("Try NOT to create a full sequence.");
+            Console.WriteLine("The first player to complete a full row loses.");
+            Console.WriteLine();
         }
 
-        /// <summary>
+    
         /// Reads and validates board size input.
-        /// </summary>
         public int ReadBoardSize()
         {
+            int boardSize;
+            bool isValidInput = false;
+
+            Console.WriteLine("Enter board size (3-9):");
+
+            while (!isValidInput)
+            {
+                string input = Console.ReadLine();
+
+                if (int.TryParse(input, out boardSize))
+                {
+                    if (boardSize >= 3 && boardSize <= 9)
+                    {
+                        isValidInput = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid input. Please enter a number between 3 and 9:");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter a valid number:");
+                }
+
+            }
+
+            return boardSize;
+
         }
 
-        /// <summary>
+     
         /// Asks whether the game is against another player or computer.
-        /// </summary>
         public bool ReadIsAgainstComputer()
         {
+            bool isValidInput = false;
+            bool isAgainstComputer = false;
+
+            Console.WriteLine("Press 1 to play against another player.");
+            Console.WriteLine("Press 2 to play against the computer.");
+
+            while (!isValidInput)
+            {
+                string input = Console.ReadLine();
+
+                if (input == "1")
+                {
+                    isAgainstComputer = false;
+                    isValidInput = true;
+                }
+                else if (input == "2")
+                {
+                    isAgainstComputer = true;
+                    isValidInput = true;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter 1 or 2:");
+                }
+            }
+
+            return isAgainstComputer;
         }
 
-        /// <summary>
+
         /// Reads a move from the current player.
-        /// </summary>
         public Move ReadMove(Player i_Player)
         {
+            int row;
+            int col;
+
+            Console.WriteLine(i_Player.Name + ", enter row:");
+            row = int.Parse(Console.ReadLine());
+
+            Console.WriteLine(i_Player.Name + ", enter column:");
+            col = int.Parse(Console.ReadLine());
+
+            return new Move(row - 1, col - 1);
         }
 
-        /// <summary>
+   
         /// Prints the current board state.
-        /// </summary>
         public void PrintBoard(Board i_Board)
         {
-        }
+            int size = i_Board.Size;
 
-        /// <summary>
+            // Print column numbers
+            Console.Write("  ");
+
+            for (int col = 1; col <= size; col++)
+            {
+                Console.Write(col + " ");
+            }
+
+            Console.WriteLine();
+
+            // Print all board rows
+            for (int row = 0; row < size; row++)
+            {
+                
+                Console.Write((row + 1) + " ");
+
+                for (int col = 0; col < size; col++)
+                {
+                    Console.Write("|");
+
+                    // Print cell value
+                    if (i_Board.GetCell(row, col) == eCellValue.X)
+                    {
+                        Console.Write("X");
+                    }
+                    else if (i_Board.GetCell(row, col) == eCellValue.O)
+                    {
+                        Console.Write("O");
+                    }
+                    else
+                    {
+                        Console.Write(" ");
+                    }
+                }
+
+                Console.Write("|");
+
+                Console.WriteLine();
+
+                // Print separator line
+                for (int i = 0; i < size; i++)
+                {
+                    Console.Write("==");
+                }
+
+                Console.Write("===");
+
+                Console.WriteLine();
+            }
+        }
+        
+
+
         /// Prints invalid input message.
-        /// </summary>
         public void PrintInvalidInputMessage()
         {
+            Console.WriteLine("Invalid input. Please try again.");
         }
 
-        /// <summary>
         /// Prints message when selected cell is occupied.
-        /// </summary>
         public void PrintCellTakenMessage()
         {
+            Console.WriteLine("That cell is already taken. Please choose another one.");
         }
 
-        /// <summary>
         /// Prints the winner of the round.
-        /// </summary>
         public void PrintWinner(Player i_Winner)
         {
+            Console.WriteLine("Congratulations " + i_Winner.Name + "! You win this round!");
         }
 
-        /// <summary>
         /// Prints tie message.
-        /// </summary>
         public void PrintTie()
         {
+            Console.WriteLine("It's a tie! No points awarded.");
         }
 
-        /// <summary>
         /// Prints the current scores.
-        /// </summary>
         public void PrintScore(Player i_Player1, Player i_Player2)
         {
+            Console.WriteLine("Current Scores:");
+            Console.WriteLine(i_Player1.Name + ": " + i_Player1.Score);
+            Console.WriteLine(i_Player2.Name + ": " + i_Player2.Score);
         }
 
-        /// <summary>
         /// Asks if players want another round.
-        /// </summary>
         public bool AskPlayAgain()
         {
+            bool isValidInput = false;
+            bool playAgain = false;
+
+            Console.WriteLine("Do you want to play another round? (y/n)");
+
+            while (!isValidInput) {
+
+                string input = Console.ReadLine().ToLower();
+
+                if(input == "y")
+                {
+                    playAgain = true;
+                    isValidInput = true;
+                }
+                else if (input == "n")
+                {
+                    playAgain = false;
+                    isValidInput = true;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter 'y' or 'n':");
+                }
+
+            }
+
+            rreturn playAgain;
         }
     }
 }
+    
