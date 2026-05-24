@@ -24,7 +24,7 @@ namespace EX02.UI
         /// Reads and validates board size input.
         public int ReadBoardSize()
         {
-            int boardSize;
+            int boardSize = 0;
             bool isValidInput = false;
 
             Console.WriteLine("Enter board size (3-9):");
