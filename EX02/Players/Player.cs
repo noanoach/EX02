@@ -17,6 +17,9 @@ namespace EX02.Players
         /// </summary>
         public Player(string i_Name, char i_Symbol)
         {
+            m_Name = i_Name;
+            m_Symbol = i_Symbol;
+            m_Score = 0;
         }
 
         /// <summary>
@@ -26,6 +29,7 @@ namespace EX02.Players
         {
             get
             {
+                return m_Name;
             }
         }
 
@@ -36,6 +40,7 @@ namespace EX02.Players
         {
             get
             {
+                return m_Symbol;
             }
         }
 
@@ -46,6 +51,7 @@ namespace EX02.Players
         {
             get
             {
+                return m_Score;
             }
         }
 
@@ -54,6 +60,7 @@ namespace EX02.Players
         /// </summary>
         public void AddPoint()
         {
+            m_Score++;
         }
     }
 }
