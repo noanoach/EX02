@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using EX02.Logic;
 using EX02.Players;
+using Ex02.ConsoleUtils;
 
 namespace EX02.UI
 {
@@ -24,7 +25,7 @@ namespace EX02.UI
         /// Reads and validates board size input.
         public int ReadBoardSize()
         {
-            int boardSize;
+            int boardSize = 0;
             bool isValidInput = false;
 
             Console.WriteLine("Enter board size (3-9):");
@@ -122,6 +123,8 @@ namespace EX02.UI
         /// Prints the current board state.
         public void PrintBoard(Board i_Board)
         {
+            Screen.Clear();
+
             int size = i_Board.Size;
 
             // Print column numbers
