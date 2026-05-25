@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Logic\Board.cs" />
+    <Compile Include="Logic\eMoveResult.cs" />
     <Compile Include="Logic\GameManager.cs" />
     <Compile Include="Logic\Move.cs" />
     <Compile Include="Players\ComputerPlayer.cs" />

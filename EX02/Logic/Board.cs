@@ -54,17 +54,22 @@ namespace EX02.Logic
 
 
         /// Places a symbol inside the requested cell.
-        public bool PlaceSymbol(int i_Row, int i_Col, eCellValue i_Symbol)
+        public eMoveResult PlaceSymbol(int i_Row, int i_Col, eCellValue i_Symbol)
 
         {
-            bool isPlaced = false;
-
-            if (IsValidCell(i_Row, i_Col) && IsCellEmpty(i_Row, i_Col))
+            if (!IsValidCell(i_Row, i_Col))
             {
-                m_Cells[i_Row, i_Col] = i_Symbol;
-                isPlaced = true;
+                return eMoveResult.OutOfRange;
             }
-            return isPlaced;
+
+            if (!IsCellEmpty(i_Row, i_Col))
+            {
+                return eMoveResult.CellTaken;
+            }
+
+            m_Cells[i_Row, i_Col] = i_Symbol;
+
+            return eMoveResult.Success;
         }
 
 
