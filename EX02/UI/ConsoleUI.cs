@@ -192,6 +192,12 @@ namespace EX02.UI
             Console.WriteLine("That cell is already taken. Please choose another one.");
         }
 
+        /// Prints message when selected cell is outside the board.
+        public void PrintCellOutOfRangeMessage()
+        {
+            Console.WriteLine("That cell does not exist on the board. Please choose another one.");
+        }
+
         /// Prints the winner of the round.
         public void PrintWinner(Player i_Winner)
         {

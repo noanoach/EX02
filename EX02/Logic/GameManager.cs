@@ -80,27 +80,33 @@ namespace EX02.Logic
         private void PlayRound()
         {
             bool roundOver = false;
+            bool validMove;
             Move move;
 
             while (!roundOver)
             {
                 m_UI.PrintBoard(m_Board);
 
-                if (m_CurrentPlayer is ComputerPlayer)
-                {
-                    move = ((ComputerPlayer)m_CurrentPlayer).ChooseMove(m_Board);
-                }
-                else
-                {
-                    move = m_UI.ReadMove(m_CurrentPlayer);
+                validMove = false;
 
-                    //if (move.IsQuit)
-                    //{
-                        //Environment.Exit(0);
-                    //}
-                }
+                while (!validMove)
+                {
+                    if (m_CurrentPlayer is ComputerPlayer)
+                    {
+                        move = ((ComputerPlayer)m_CurrentPlayer).ChooseMove(m_Board);
+                    }
+                    else
+                    {
+                        move = m_UI.ReadMove(m_CurrentPlayer);
+                    }
 
-                PlayTurn(move);
+                    validMove = PlayTurn(move);
+
+                    if (!validMove)
+                    {
+                        m_UI.PrintCellOutOfRangeMessage();
+                    }
+                }
 
                 roundOver = IsRoundOver();
 
@@ -111,15 +117,16 @@ namespace EX02.Logic
             }
 
             m_UI.PrintBoard(m_Board);
+
             HandleRoundEnd();
         }
 
         /// <summary>
         /// Handles a single player turn.
         /// </summary>
-        private void PlayTurn(Move i_Move)
+        private bool PlayTurn(Move i_Move)
         {
-            m_Board.PlaceSymbol(i_Move.Row, i_Move.Col, m_CurrentPlayer.Symbol);
+            return m_Board.PlaceSymbol(i_Move.Row, i_Move.Col, m_CurrentPlayer.Symbol);
         }
 
         /// <summary>
