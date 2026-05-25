@@ -150,7 +150,7 @@ namespace EX02.UI
 
             for (int col = 1; col <= size; col++)
             {
-                Console.Write(col + " ");
+                Console.Write(" " + col);
             }
 
             Console.WriteLine();
