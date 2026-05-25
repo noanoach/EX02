@@ -10,6 +10,7 @@ namespace EX02.Logic
     {
         private int m_Row;
         private int m_Col;
+        private eMoveResult m_Result;
 
         /// <summary>
         /// Creates a move with row and column values.
@@ -18,6 +19,16 @@ namespace EX02.Logic
         {
             m_Row = i_Row;
             m_Col = i_Col;
+
+            m_Result = eMoveResult.Success;
+        }
+
+        /// <summary>
+        /// Creates a special move result.
+        /// </summary>
+        public Move(eMoveResult i_Result)
+        {
+            m_Result = i_Result;
         }
 
         /// <summary>
@@ -39,6 +50,17 @@ namespace EX02.Logic
             get
             {
                 return m_Col;
+            }
+        }
+
+        /// <summary>
+        /// Returns the move result.
+        /// </summary>
+        public eMoveResult Result
+        {
+            get
+            {
+                return m_Result;
             }
         }
     }

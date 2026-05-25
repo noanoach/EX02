@@ -97,41 +97,31 @@ namespace EX02.UI
             int col;
 
             Console.WriteLine(i_Player.Name + ", enter row:");
+
             string rowInput = Console.ReadLine().ToLower();
 
             if (rowInput == "q")
             {
-                Environment.Exit(0);
+                return new Move(eMoveResult.Quit);
             }
 
-            while (!int.TryParse(rowInput, out row))
+            if (!int.TryParse(rowInput, out row))
             {
-                Console.WriteLine("Invalid input. Please enter a valid number:");
-                rowInput = Console.ReadLine().ToLower();
-
-                if (rowInput == "q")
-                {
-                    Environment.Exit(0);
-                }
+                return new Move(eMoveResult.InvalidFormat);
             }
 
             Console.WriteLine(i_Player.Name + ", enter column:");
+
             string colInput = Console.ReadLine().ToLower();
 
             if (colInput == "q")
             {
-                Environment.Exit(0);
+                return new Move(eMoveResult.Quit);
             }
 
-            while (!int.TryParse(colInput, out col))
+            if (!int.TryParse(colInput, out col))
             {
-                Console.WriteLine("Invalid input. Please enter a valid number:");
-                colInput = Console.ReadLine().ToLower();
-
-                if (colInput == "q")
-                {
-                    Environment.Exit(0);
-                }
+                return new Move(eMoveResult.InvalidFormat);
             }
 
             return new Move(row - 1, col - 1);

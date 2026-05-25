@@ -80,31 +80,50 @@ namespace EX02.Logic
         private void PlayRound()
         {
             bool roundOver = false;
-            bool validMove;
+            eMoveResult moveResult;
             Move move;
 
             while (!roundOver)
             {
                 m_UI.PrintBoard(m_Board);
 
-                validMove = false;
+                moveResult = eMoveResult.InvalidFormat;
 
-                while (!validMove)
+                while (moveResult != eMoveResult.Success)
                 {
                     if (m_CurrentPlayer is ComputerPlayer)
                     {
                         move = ((ComputerPlayer)m_CurrentPlayer).ChooseMove(m_Board);
+                        moveResult = PlayTurn(move);
                     }
                     else
                     {
                         move = m_UI.ReadMove(m_CurrentPlayer);
+                        moveResult = move.Result;
+
+                        if (moveResult == eMoveResult.Success)
+                        {
+                            moveResult = PlayTurn(move);
+                        }
                     }
 
-                    validMove = PlayTurn(move);
-
-                    if (!validMove)
+                    switch (moveResult)
                     {
-                        m_UI.PrintCellOutOfRangeMessage();
+                        case eMoveResult.InvalidFormat:
+                            m_UI.PrintInvalidInputMessage();
+                            break;
+
+                        case eMoveResult.OutOfRange:
+                            m_UI.PrintCellOutOfRangeMessage();
+                            break;
+
+                        case eMoveResult.CellTaken:
+                            m_UI.PrintCellTakenMessage();
+                            break;
+
+                        case eMoveResult.Quit:
+                            Environment.Exit(0);
+                            break;
                     }
                 }
 
@@ -124,7 +143,7 @@ namespace EX02.Logic
         /// <summary>
         /// Handles a single player turn.
         /// </summary>
-        private bool PlayTurn(Move i_Move)
+        private eMoveResult PlayTurn(Move i_Move)
         {
             return m_Board.PlaceSymbol(i_Move.Row, i_Move.Col, m_CurrentPlayer.Symbol);
         }
