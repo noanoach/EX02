@@ -20,7 +20,6 @@ namespace EX02.UI
             Console.WriteLine("The first player to complete a full row loses.");
             Console.WriteLine();
         }
-
     
         /// Reads and validates board size input.
         public int ReadBoardSize()
@@ -196,8 +195,6 @@ namespace EX02.UI
             }
         }
         
-
-
         /// Prints invalid input message.
         public void PrintInvalidInputMessage()
         {
@@ -244,11 +241,12 @@ namespace EX02.UI
 
             Console.WriteLine("Do you want to play another round? (y/n)");
 
-            while (!isValidInput) {
+            while (!isValidInput) 
+            {
 
                 string input = Console.ReadLine().ToLower();
 
-                if(input == "y")
+                if (input == "y")
                 {
                     playAgain = true;
                     isValidInput = true;
