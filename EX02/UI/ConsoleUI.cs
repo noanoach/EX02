@@ -104,7 +104,16 @@ namespace EX02.UI
                 Environment.Exit(0);
             }
 
-            row = int.Parse(rowInput);
+            while (!int.TryParse(rowInput, out row))
+            {
+                Console.WriteLine("Invalid input. Please enter a valid number:");
+                rowInput = Console.ReadLine().ToLower();
+
+                if (rowInput == "q")
+                {
+                    Environment.Exit(0);
+                }
+            }
 
             Console.WriteLine(i_Player.Name + ", enter column:");
             string colInput = Console.ReadLine().ToLower();
@@ -114,7 +123,16 @@ namespace EX02.UI
                 Environment.Exit(0);
             }
 
-            col = int.Parse(colInput);
+            while (!int.TryParse(colInput, out col))
+            {
+                Console.WriteLine("Invalid input. Please enter a valid number:");
+                colInput = Console.ReadLine().ToLower();
+
+                if (colInput == "q")
+                {
+                    Environment.Exit(0);
+                }
+            }
 
             return new Move(row - 1, col - 1);
         }
