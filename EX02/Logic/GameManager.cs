@@ -58,15 +58,15 @@ namespace EX02.Logic
 
             isAgainstComputer = m_UI.ReadIsAgainstComputer();
 
-            m_Player1 = new Player("Player 1", 'X');
+            m_Player1 = new Player("Player 1", eCellValue.X);
 
             if (isAgainstComputer)
             {
-                m_Player2 = new ComputerPlayer("Player 2", 'O');
+                m_Player2 = new ComputerPlayer("Player 2", eCellValue.O);
             }
             else
             {
-                m_Player2 = new Player("Player 2", 'O');
+                m_Player2 = new Player("Player 2", eCellValue.O);
             }
 
             m_Board = new Board(boardSize);
@@ -94,10 +94,10 @@ namespace EX02.Logic
                 {
                     move = m_UI.ReadMove(m_CurrentPlayer);
 
-                    if (move.IsQuit)
-                    {
-                        Environment.Exit(0);
-                    }
+                    //if (move.IsQuit)
+                    //{
+                        //Environment.Exit(0);
+                    //}
                 }
 
                 PlayTurn(move);

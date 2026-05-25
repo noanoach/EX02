@@ -15,7 +15,7 @@ namespace EX02.Players
         /// <summary>
         /// Creates a computer-controlled player.
         /// </summary>
-        public ComputerPlayer(string i_Name, char i_Symbol)
+        public ComputerPlayer(string i_Name, eCellValue i_Symbol)
             : base(i_Name, i_Symbol)
         {
             m_Random = new Random();
