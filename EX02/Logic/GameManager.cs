@@ -1,10 +1,11 @@
 ﻿using EX02.Players;
+using EX02.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
-using EX02.UI;
 
 namespace EX02.Logic
 {
@@ -93,6 +94,9 @@ namespace EX02.Logic
                 {
                     if (m_CurrentPlayer is ComputerPlayer)
                     {
+                        Console.WriteLine("Computer is thinking...");
+                        Thread.Sleep(1000);
+
                         move = ((ComputerPlayer)m_CurrentPlayer).ChooseMove(m_Board);
                     }
                     else
