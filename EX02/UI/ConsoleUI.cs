@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using EX02.Logic;
 using EX02.Players;
 using Ex02.ConsoleUtils;

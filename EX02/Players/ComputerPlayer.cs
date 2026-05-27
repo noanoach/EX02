@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using EX02.Logic;
 
 namespace EX02.Players
@@ -12,18 +7,14 @@ namespace EX02.Players
     {
         private Random m_Random;
 
-        /// <summary>
         /// Creates a computer-controlled player.
-        /// </summary>
         public ComputerPlayer(string i_Name, eCellValue i_Symbol)
             : base(i_Name, i_Symbol)
         {
             m_Random = new Random();
         }
 
-        /// <summary>
         /// Selects a random valid move.
-        /// </summary>
         public Move ChooseMove(Board i_Board)
         {
             int row;
