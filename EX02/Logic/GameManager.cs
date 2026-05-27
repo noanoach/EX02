@@ -15,49 +15,44 @@ namespace EX02.Logic
         private Player m_Player1;
         private Player m_Player2;
         private Player m_CurrentPlayer;
-        private ConsoleUI m_UI;
+        private ConsoleUI m_ConsoleUI;
 
-
-        /// <summary>
+     
         /// Runs the entire game flow.
-        /// </summary>
         public void Run()
         {
-
-            bool playAgain = true;
+            bool shouldPlayAgain = true;
 
             InitializeGame();
 
-            while (playAgain)
+            while (shouldPlayAgain)
             {
                 PlayRound();
 
-                m_UI.PrintScore(m_Player1, m_Player2);
+                m_ConsoleUI.PrintScore(m_Player1, m_Player2);
 
-                playAgain = m_UI.AskPlayAgain();
+                shouldPlayAgain = m_ConsoleUI.AskPlayAgain();
 
-                if (playAgain)
+                if (shouldPlayAgain)
                 {
                     StartNewRound();
                 }
             }
         }
 
-        /// <summary>
         /// Initializes players and board settings.
-        /// </summary>
         private void InitializeGame()
         {
             int boardSize;
             bool isAgainstComputer;
 
-            m_UI = new ConsoleUI();
+            m_ConsoleUI = new ConsoleUI();
 
-            m_UI.PrintWelcome();
+            m_ConsoleUI.PrintWelcome();
 
-            boardSize = m_UI.ReadBoardSize();
+            boardSize = m_ConsoleUI.ReadBoardSize();
 
-            isAgainstComputer = m_UI.ReadIsAgainstComputer();
+            isAgainstComputer = m_ConsoleUI.ReadIsAgainstComputer();
 
             m_Player1 = new Player("Player 1", eCellValue.X);
 
@@ -75,18 +70,17 @@ namespace EX02.Logic
             m_CurrentPlayer = m_Player1;
         }
 
-        /// <summary>
+
         /// Runs one round of the game.
-        /// </summary>
         private void PlayRound()
         {
-            bool roundOver = false;
+            bool isRoundOver = false;
             eMoveResult moveResult;
             Move move;
 
-            while (!roundOver)
+            while (!isRoundOver)
             {
-                m_UI.PrintBoard(m_Board);
+                m_ConsoleUI.PrintBoard(m_Board);
 
                 moveResult = eMoveResult.InvalidFormat;
 
@@ -102,7 +96,7 @@ namespace EX02.Logic
                     }
                     else
                     {
-                        move = m_UI.ReadMove(m_CurrentPlayer);
+                        move = m_ConsoleUI.ReadMove(m_CurrentPlayer);
                         moveResult = move.Result;
 
                         if (moveResult == eMoveResult.Success)
@@ -114,47 +108,43 @@ namespace EX02.Logic
                     switch (moveResult)
                     {
                         case eMoveResult.InvalidFormat:
-                            m_UI.PrintInvalidInputMessage();
+                            m_ConsoleUI.PrintInvalidInputMessage();
                             break;
 
                         case eMoveResult.OutOfRange:
-                            m_UI.PrintCellOutOfRangeMessage();
+                            m_ConsoleUI.PrintCellOutOfRangeMessage();
                             break;
 
                         case eMoveResult.CellTaken:
-                            m_UI.PrintCellTakenMessage();
+                            m_ConsoleUI.PrintCellTakenMessage();
                             break;
 
                         case eMoveResult.Quit:
                             return;
-                            
                     }
                 }
 
-                roundOver = IsRoundOver();
+                isRoundOver = IsRoundOver();
 
-                if (!roundOver)
+                if (!isRoundOver)
                 {
                     SwitchTurn();
                 }
             }
 
-            m_UI.PrintBoard(m_Board);
+            m_ConsoleUI.PrintBoard(m_Board);
 
             HandleRoundEnd();
         }
 
-        /// <summary>
         /// Handles a single player turn.
-        /// </summary>
         private eMoveResult PlayTurn(Move i_Move)
         {
             return m_Board.PlaceSymbol(i_Move.Row, i_Move.Col, m_CurrentPlayer.Symbol);
         }
 
-        /// <summary>
+
         /// Switches the turn to the other player.
-        /// </summary>
         private void SwitchTurn()
         {
             if (m_CurrentPlayer == m_Player1)
@@ -167,17 +157,13 @@ namespace EX02.Logic
             }
         }
 
-        /// <summary>
         /// Checks if the current round ended.
-        /// </summary>
         private bool IsRoundOver()
         {
             return m_Board.HasLosingSequence(m_CurrentPlayer.Symbol) || m_Board.IsFull();
         }
 
-        /// <summary>
         /// Updates scores and handles end of round.
-        /// </summary>
         private void HandleRoundEnd()
         {
             if (m_Board.HasLosingSequence(m_CurrentPlayer.Symbol))
@@ -185,23 +171,21 @@ namespace EX02.Logic
                 if (m_CurrentPlayer == m_Player1)
                 {
                     m_Player2.AddPoint();
-                    m_UI.PrintWinner(m_Player2);
+                    m_ConsoleUI.PrintWinner(m_Player2);
                 }
                 else
                 {
                     m_Player1.AddPoint();
-                    m_UI.PrintWinner(m_Player1);
+                    m_ConsoleUI.PrintWinner(m_Player1);
                 }
             }
             else
             {
-                m_UI.PrintTie();
+                m_ConsoleUI.PrintTie();
             }
         }
 
-        /// <summary>
         /// Starts a new round with a cleared board.
-        /// </summary>
         private void StartNewRound()
         {
             m_Board.Clear();
