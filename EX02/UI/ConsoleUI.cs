@@ -54,8 +54,7 @@ namespace EX02.UI
             return boardSize;
 
         }
-
-     
+   
         /// Asks whether the game is against another player or computer.
         public bool ReadIsAgainstComputer()
         {
@@ -87,7 +86,6 @@ namespace EX02.UI
 
             return isAgainstComputer;
         }
-
 
         /// Reads a move from the current player.
         public Move ReadMove(Player i_Player)
@@ -125,7 +123,6 @@ namespace EX02.UI
 
             return new Move(row - 1, col - 1);
         }
-
 
         /// Prints the current board state.
         public void PrintBoard(Board i_Board)

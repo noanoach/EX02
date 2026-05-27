@@ -13,9 +13,7 @@ namespace EX02.Players
         private eCellValue m_Symbol;
         private int m_Score;
 
-        /// <summary>
         /// Creates a new player.
-        /// </summary>
         public Player(string i_Name, eCellValue i_Symbol)
         {
             m_Name = i_Name;
@@ -23,9 +21,7 @@ namespace EX02.Players
             m_Score = 0;
         }
 
-        /// <summary>
         /// Returns the player's name.
-        /// </summary>
         public string Name
         {
             get
@@ -34,9 +30,7 @@ namespace EX02.Players
             }
         }
 
-        /// <summary>
-        /// Returns the player's symbol.
-        /// </summary>
+        /// Returns the player's symbol.       
         public eCellValue Symbol
         {
             get
@@ -44,10 +38,8 @@ namespace EX02.Players
                 return m_Symbol;
             }
         }
-
-        /// <summary>
-        /// Returns the player's score.
-        /// </summary>
+        
+        /// Returns the player's score.       
         public int Score
         {
             get
@@ -55,10 +47,8 @@ namespace EX02.Players
                 return m_Score;
             }
         }
-
-        /// <summary>
-        /// Adds one point to the player's score.
-        /// </summary>
+        
+        /// Adds one point to the player's score.        
         public void AddPoint()
         {
             m_Score++;
