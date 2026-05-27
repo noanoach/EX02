@@ -126,8 +126,8 @@ namespace EX02.Logic
                             break;
 
                         case eMoveResult.Quit:
-                            Environment.Exit(0);
-                            break;
+                            return;
+                            
                     }
                 }
 
